@@ -1,38 +1,43 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+// linha 2
+           class Produto {
+        String nome;
+        int quantidade;
+        double preco;
+        String pratilheira;
+           }
+// fora do main
 
-class Produto {
-    String nome;
-    int quantidade;
-    double preco;
-}
+ e.nextLine(); 
 
-public class projeto {
-  public static void main(String args[]) {
-      Scanner e = new Scanner(System.in);
+    System.out.println("Informe o nome do produto:");
+    String nomeProd = e.nextLine();
 
-      ArrayList<Produto> lista = new ArrayList<>();
+    System.out.println("Informe a quantidade do produto:");
+    int qnt = e.nextInt();
 
-      System.out.println("Informe o nome do produto:");
-      String nome = e.nextLine();
+    System.out.println("Informe o preço do produto:");
+    double preco = e.nextDouble();
+    e.nextLine(); 
+    
+    System.out.println("informe a pratilheira ");
+    String pratilheira = e.nextLine();
 
-      System.out.println("Informe a quantidade do produto:");
-      int qnt = e.nextInt();
+    Produto p = new Produto();
+    p.nome = nomeProd;
+    p.quantidade = qnt;
+    p.preco = preco;
+    p.pratilheira = pratilheira;
 
-      System.out.println("Informe o preço do produto:");
-      double preco = e.nextDouble();
+    lista.add(p);
 
-      Produto p = new Produto();
-      p.nome = nome;
-      p.quantidade = qnt;
-      p.preco = preco;
+    System.out.println("Produto cadastrado com sucesso!");
 
-      lista.add(p);
-
-      for (Produto prod : lista) {
-          System.out.println("Nome: " + prod.nome);
-          System.out.println("Quantidade: " + prod.quantidade);
-          System.out.println("Preço: R$" + prod.preco);
-      }
-  }
-}
+   
+    for (Produto prod : lista) {
+        System.out.println("Nome: " + prod.nome);
+        System.out.println("Quantidade: " + prod.quantidade);
+        System.out.println("Preço: R$ " + prod.preco);
+        System.out.println("guardado em "+ prod.pratilheira);
+        
+        System.out.println("cadastrando.....");
