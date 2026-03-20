@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Produto {
+    String nome;
+    int quantidade;
+    double preco;
+}
+
+public class projeto {
+  public static void main(String args[]) {
+      Scanner e = new Scanner(System.in);
+
+      ArrayList<Produto> lista = new ArrayList<>();
+
+      System.out.println("Informe o nome do produto:");
+      String nome = e.nextLine();
+
+      System.out.println("Informe a quantidade do produto:");
+      int qnt = e.nextInt();
+
+      System.out.println("Informe o preço do produto:");
+      double preco = e.nextDouble();
+
+      Produto p = new Produto();
+      p.nome = nome;
+      p.quantidade = qnt;
+      p.preco = preco;
+
+      lista.add(p);
+
+      for (Produto prod : lista) {
+          System.out.println("Nome: " + prod.nome);
+          System.out.println("Quantidade: " + prod.quantidade);
+          System.out.println("Preço: R$" + prod.preco);
+      }
+  }
+}
