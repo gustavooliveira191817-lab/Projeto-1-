@@ -1,0 +1,68 @@
+import java.util.Scanner;
+
+public class projeto {
+  public static void main(String args[]) {
+      Scanner e = new Scanner(System.in);
+
+      String nome;
+      System.out.println("Informe seu primeiro e último nome:");
+      nome = e.nextLine();
+
+      String senha = "";
+      System.out.println("Informe uma senha de no mínimo 8 caracteres:");
+      senha = e.nextLine();
+
+      while (senha.length() < 8) {
+          System.out.println("Senha inválida, tente novamente:");
+          senha = e.nextLine();
+      }
+
+      String login, confisenha;
+
+      System.out.println("Confirme seu login:");
+      login = e.nextLine();
+
+      System.out.println("Confirme sua senha:");
+      confisenha = e.nextLine();
+
+      if (confisenha.equals(senha)) {
+          System.out.println("Login realizado com sucesso!");
+
+          char opcao = '0';
+
+          while (opcao != '5') {
+              System.out.println("===== MENU =====");
+              System.out.println("1 - Cadastrar produto");
+              System.out.println("2 - Lista de produtos");
+              System.out.println("3 - Remover produto");
+              System.out.println("4 - Atualizar produto");
+              System.out.println("5 - Sair");
+
+              opcao = e.next().charAt(0);
+              
+              switch(opcao) {
+                  case '1':
+                      System.out.println("Cadastrando produto...");
+                      break;
+                  case '2':
+                      System.out.println("Listando produtos...");
+                      break;
+                  case '3':
+                      System.out.println("Removendo produto...");
+                      break;
+                  case '4':
+                      System.out.println("Atualizando produto...");
+                      break;
+                  case '5':
+                      System.out.println("Saindo...");
+                      break;
+                  default:
+                      System.out.println("Opção inválida!");
+              }
+          }
+
+      } else {
+          System.out.println("Senha incorreta!");
+      }
+  }
+}
