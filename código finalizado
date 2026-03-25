@@ -1,0 +1,175 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Produto {
+    String nome;
+    int quantidade;
+    double preco;
+    String codigo;
+
+    public static void main(String args[]) {
+        Scanner e = new Scanner(System.in);
+        ArrayList<Produto> lista = new ArrayList<>();
+
+        System.out.println("Informe seu primeiro e último nome:");
+        String nome = e.nextLine();
+
+        String senha;
+        System.out.println("Informe uma senha de no mínimo 8 caracteres:");
+        senha = e.nextLine();
+
+        while (senha.length() < 8) {
+            System.out.println("Senha inválida, tente novamente:");
+            senha = e.nextLine();
+        }
+
+        System.out.println("Confirme sua senha:");
+        String confisenha = e.nextLine();
+
+        if (!confisenha.equals(senha)) {
+            System.out.println("Senha incorreta!");
+            return;
+        }
+
+        System.out.println("Login realizado com sucesso!");
+        System.out.println("Bem-vindo " + nome);
+
+        char opcao = '0';
+
+        while (opcao != '5') {
+            System.out.println("\n===== MENU =====");
+            System.out.println("1 - Cadastrar produto");
+            System.out.println("2 - Listar produtos");
+            System.out.println("3 - Remover produto");
+            System.out.println("4 - Atualizar produto");
+            System.out.println("5 - Sair");
+
+            opcao = e.nextLine().charAt(0);
+
+            switch (opcao) {
+
+                // ✅ CADASTRAR
+                case '1':
+                    System.out.println("Nome do produto:");
+                    String nomeProd = e.nextLine();
+
+                    System.out.println("Quantidade:");
+                    int qnt = Integer.parseInt(e.nextLine());
+
+                    System.out.println("Preço:");
+                    double preco = Double.parseDouble(e.nextLine());
+
+                    System.out.println("Código:");
+                    String codigo = e.nextLine();
+
+                    // verificar código duplicado
+                    boolean existe = false;
+                    for (Produto prod : lista) {
+                        if (prod.codigo.equalsIgnoreCase(codigo)) {
+                            existe = true;
+                            break;
+                        }
+                    }
+
+                    if (existe) {
+                        System.out.println("Já existe um produto com esse código!");
+                        break;
+                    }
+
+                    Produto p = new Produto();
+                    p.nome = nomeProd;
+                    p.quantidade = qnt;
+                    p.preco = preco;
+                    p.codigo = codigo;
+
+                    lista.add(p);
+                    System.out.println("Produto cadastrado com sucesso!");
+                    break;
+
+                // ✅ LISTAR
+                case '2':
+                    if (lista.isEmpty()) {
+                        System.out.println("Nenhum produto cadastrado.");
+                    } else {
+                        System.out.println("\n=== PRODUTOS ===");
+                        for (Produto prod : lista) {
+                            System.out.println("-------------------");
+                            System.out.println("Nome: " + prod.nome);
+                            System.out.println("Quantidade: " + prod.quantidade);
+                            System.out.println("Preço: R$ " + prod.preco);
+                            System.out.println("Código: " + prod.codigo);
+                        }
+                    }
+                    break;
+
+                // ✅ REMOVER
+                case '3':
+                    System.out.println("Digite o código do produto:");
+                    String codigoRemover = e.nextLine();
+
+                    boolean removido = false;
+
+                    for (int i = 0; i < lista.size(); i++) {
+                        if (lista.get(i).codigo.equalsIgnoreCase(codigoRemover)) {
+                            lista.remove(i);
+                            removido = true;
+                            System.out.println("Produto removido!");
+                            break;
+                        }
+                    }
+
+                    if (!removido) {
+                        System.out.println("Produto não encontrado.");
+                    }
+                    break;
+
+                // ✅ ATUALIZAR (TOP 🔥)
+                case '4':
+                    System.out.println("Digite o código do produto:");
+                    String codigoAtualizar = e.nextLine();
+
+                    boolean achou = false;
+
+                    for (Produto prod : lista) {
+                        if (prod.codigo.equalsIgnoreCase(codigoAtualizar)) {
+
+                            System.out.println("Novo nome (ou ENTER para manter):");
+                            String novoNome = e.nextLine();
+                            if (!novoNome.isEmpty()) {
+                                prod.nome = novoNome;
+                            }
+
+                            System.out.println("Nova quantidade (ou ENTER para manter):");
+                            String novaQnt = e.nextLine();
+                            if (!novaQnt.isEmpty()) {
+                                prod.quantidade = Integer.parseInt(novaQnt);
+                            }
+
+                            System.out.println("Novo preço (ou ENTER para manter):");
+                            String novoPreco = e.nextLine();
+                            if (!novoPreco.isEmpty()) {
+                                prod.preco = Double.parseDouble(novoPreco);
+                            }
+
+                            System.out.println("Produto atualizado!");
+                            achou = true;
+                            break;
+                        }
+                    }
+
+                    if (!achou) {
+                        System.out.println("Produto não encontrado.");
+                    }
+                    break;
+
+                // ✅ SAIR
+                case '5':
+                    System.out.println("Saindo do sistema...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        }
+    }
+}
